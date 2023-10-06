@@ -1,17 +1,35 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
-public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.Scanner;
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+public class Main{
+    public static void main(String[] args){
+        int score = 0;
+        int numberOfWords = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter the first word: ");
+        String word = scan.nextLine();
+        while (score < 50){
+            System.out.print("Enter another word: ");
+            String currentWord = scan.nextLine();
+            
+            if (currentWord.compareTo(word) > 0){
+                score += 2;
+            }
+            else if (currentWord.compareTo(word) == 0){
+                score -= 10;
+            }
+            else{
+                score -= 5;
+            }
+            if (word.substring(word.length() - 2).equals(currentWord.substring(0, 2))){
+                score += 5;
+            }
+            if (currentWord.indexOf(word.substring(0, 1)) != -1){
+                score += 3;
+            }
+            word = currentWord;
+            System.out.println("Points: " + score);
+            numberOfWords ++;
         }
+        System.out.println("It took you " + numberOfWords + " to reach 50 points");
     }
 }
